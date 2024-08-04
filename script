@@ -1,180 +1,180 @@
-local TweenService = game:GetService("TweenService")
-local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
-local player = Players.LocalPlayer
+local a=game:GetService"TweenService"
+local b=game:GetService"Players"
+local c=game:GetService"UserInputService"
+local d=b.LocalPlayer
 
--- Create a ScreenGui to hold the notification
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = player:WaitForChild("PlayerGui")
 
--- Create the notification frame
-local notification = Instance.new("Frame")
-notification.Size = UDim2.new(0, 350, 0, 100)
-notification.Position = UDim2.new(1, 20, 0.9, 0) -- Start position (off-screen to the bottom-right)
-notification.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-notification.BorderSizePixel = 0
-notification.BackgroundTransparency = 0
-notification.Parent = screenGui
+local e=Instance.new"ScreenGui"
+e.Parent=d:WaitForChild"PlayerGui"
 
--- Add rounded corners to the notification frame
-local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 16)
-corner.Parent = notification
 
--- Add text to the notification
-local title = Instance.new("TextLabel")
-title.Size = UDim2.new(1, -20, 0, 30)
-title.Position = UDim2.new(0, 10, 0, 10)
-title.Text = "mwiswhka"
-title.TextColor3 = Color3.fromRGB(255, 255, 255)
-title.BackgroundTransparency = 1
-title.TextScaled = true
-title.TextStrokeTransparency = 0.7
-title.Font = Enum.Font.SourceSansBold
-title.TextSize = 16
-title.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
-title.TextYAlignment = Enum.TextYAlignment.Top
-title.Parent = notification
+local f=Instance.new"Frame"
+f.Size=UDim2.new(0,350,0,100)
+f.Position=UDim2.new(1,20,0.9,0)
+f.BackgroundColor3=Color3.fromRGB(40,40,40)
+f.BorderSizePixel=0
+f.BackgroundTransparency=0
+f.Parent=e
 
-local subtitle = Instance.new("TextLabel")
-subtitle.Size = UDim2.new(1, -20, 0, 40)
-subtitle.Position = UDim2.new(0, 10, 0, 40)
-subtitle.Text = "Welcome to the Sigma hub"
-subtitle.TextColor3 = Color3.fromRGB(200, 200, 200)
-subtitle.BackgroundTransparency = 1
-subtitle.TextScaled = true
-subtitle.TextStrokeTransparency = 0.7
-subtitle.Font = Enum.Font.SourceSans
-subtitle.TextSize = 12
-subtitle.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
-subtitle.TextYAlignment = Enum.TextYAlignment.Top
-subtitle.Parent = notification
 
--- Tween settings for smooth transitions
-local tweenInfoIn = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
-local tweenInfoOut = TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut)
-local tweenIn = TweenService:Create(notification, tweenInfoIn, {Position = UDim2.new(1, -370, 0.9, 0)}) -- Slide in from bottom-right
-local tweenOut = TweenService:Create(notification, tweenInfoOut, {Position = UDim2.new(1, 20, 0.9, 0)}) -- Slide out to bottom-right
+local g=Instance.new"UICorner"
+g.CornerRadius=UDim.new(0,16)
+g.Parent=f
 
--- Display and animate the notification
-tweenIn:Play()
-wait(2) -- Display time
-tweenOut:Play()
-wait(0.5) -- Wait for the slide-out to complete
-notification:Destroy()
 
--- Create the main GUI
-local mainGui = Instance.new("Frame")
-mainGui.Size = UDim2.new(0.8, 0, 0.8, 0) -- Size as a percentage of the screen
-mainGui.Position = UDim2.new(0.1, 0, 0.1, 0) -- Centered on the screen
-mainGui.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-mainGui.BorderSizePixel = 0
-mainGui.BackgroundTransparency = 0
-mainGui.Parent = screenGui
+local h=Instance.new"TextLabel"
+h.Size=UDim2.new(1,-20,0,30)
+h.Position=UDim2.new(0,10,0,10)
+h.Text="mwiswhka"
+h.TextColor3=Color3.fromRGB(255,255,255)
+h.BackgroundTransparency=1
+h.TextScaled=true
+h.TextStrokeTransparency=0.7
+h.Font=Enum.Font.SourceSansBold
+h.TextSize=16
+h.TextStrokeColor3=Color3.fromRGB(0,0,0)
+h.TextYAlignment=Enum.TextYAlignment.Top
+h.Parent=f
 
--- Add rounded corners to the main GUI
-local mainCorner = Instance.new("UICorner")
-mainCorner.CornerRadius = UDim.new(0, 16)
-mainCorner.Parent = mainGui
+local i=Instance.new"TextLabel"
+i.Size=UDim2.new(1,-20,0,40)
+i.Position=UDim2.new(0,10,0,40)
+i.Text="Welcome to the Sigma hub"
+i.TextColor3=Color3.fromRGB(200,200,200)
+i.BackgroundTransparency=1
+i.TextScaled=true
+i.TextStrokeTransparency=0.7
+i.Font=Enum.Font.SourceSans
+i.TextSize=12
+i.TextStrokeColor3=Color3.fromRGB(0,0,0)
+i.TextYAlignment=Enum.TextYAlignment.Top
+i.Parent=f
 
--- Create close and minimize buttons
-local closeButton = Instance.new("ImageButton")
-closeButton.Size = UDim2.new(0, 20, 0, 20)
-closeButton.Position = UDim2.new(1, -30, 0, 10)
-closeButton.BackgroundColor3 = Color3.fromRGB(255, 95, 86)
-closeButton.Image = ""
-closeButton.Parent = mainGui
-closeButton.MouseButton1Click:Connect(function()
-    local closeTweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut)
-    local closeTween = TweenService:Create(mainGui, closeTweenInfo, {Size = UDim2.new(0.8, 0, 0, 0)})
-    closeTween:Play()
-    closeTween.Completed:Connect(function()
-        mainGui.Visible = false
-    end)
+
+local j=TweenInfo.new(0.5,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut)
+local k=TweenInfo.new(0.5,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut)
+local l=a:Create(f,j,{Position=UDim2.new(1,-370,0.9,0)})
+local m=a:Create(f,k,{Position=UDim2.new(1,20,0.9,0)})
+
+
+l:Play()
+wait(2)
+m:Play()
+wait(0.5)
+f:Destroy()
+
+
+local n=Instance.new"Frame"
+n.Size=UDim2.new(0.8,0,0.8,0)
+n.Position=UDim2.new(0.1,0,0.1,0)
+n.BackgroundColor3=Color3.fromRGB(255,255,255)
+n.BorderSizePixel=0
+n.BackgroundTransparency=0
+n.Parent=e
+
+
+local o=Instance.new"UICorner"
+o.CornerRadius=UDim.new(0,16)
+o.Parent=n
+
+
+local p=Instance.new"ImageButton"
+p.Size=UDim2.new(0,20,0,20)
+p.Position=UDim2.new(1,-30,0,10)
+p.BackgroundColor3=Color3.fromRGB(255,95,86)
+p.Image=""
+p.Parent=n
+p.MouseButton1Click:Connect(function()
+local q=TweenInfo.new(0.5,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut)
+local r=a:Create(n,q,{Size=UDim2.new(0.8,0,0,0)})
+r:Play()
+r.Completed:Connect(function()
+n.Visible=false
+end)
 end)
 
-local minimizeButton = Instance.new("ImageButton")
-minimizeButton.Size = UDim2.new(0, 20, 0, 20)
-minimizeButton.Position = UDim2.new(1, -60, 0, 10)
-minimizeButton.BackgroundColor3 = Color3.fromRGB(255, 189, 76)
-minimizeButton.Image = ""
-minimizeButton.Parent = mainGui
-minimizeButton.MouseButton1Click:Connect(function()
-    local closeTweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut)
-    local closeTween = TweenService:Create(mainGui, closeTweenInfo, {Size = UDim2.new(0.8, 0, 0, 0)})
-    closeTween:Play()
-    closeTween.Completed:Connect(function()
-        mainGui.Visible = false
-    end)
+local q=Instance.new"ImageButton"
+q.Size=UDim2.new(0,20,0,20)
+q.Position=UDim2.new(1,-60,0,10)
+q.BackgroundColor3=Color3.fromRGB(255,189,76)
+q.Image=""
+q.Parent=n
+q.MouseButton1Click:Connect(function()
+local r=TweenInfo.new(0.5,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut)
+local s=a:Create(n,r,{Size=UDim2.new(0.8,0,0,0)})
+s:Play()
+s.Completed:Connect(function()
+n.Visible=false
+end)
 end)
 
-UserInputService.InputBegan:Connect(function(input)
-    if input.KeyCode == Enum.KeyCode.RightShift then
-        mainGui.Visible = true
-        local openTweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut)
-        local openTween = TweenService:Create(mainGui, openTweenInfo, {Size = UDim2.new(0.8, 0, 0.8, 0)})
-        openTween:Play()
-    end
+c.InputBegan:Connect(function(r)
+if r.KeyCode==Enum.KeyCode.RightShift then
+n.Visible=true
+local s=TweenInfo.new(0.5,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut)
+local t=a:Create(n,s,{Size=UDim2.new(0.8,0,0.8,0)})
+t:Play()
+end
 end)
 
--- Create sidebar
-local sidebar = Instance.new("Frame")
-sidebar.Size = UDim2.new(0, 200, 1, 0)
-sidebar.Position = UDim2.new(0, 0, 0, 0)
-sidebar.BackgroundColor3 = Color3.fromRGB(230, 230, 230)
-sidebar.BorderSizePixel = 0
-sidebar.Parent = mainGui
 
-local sidebarCorner = Instance.new("UICorner")
-sidebarCorner.CornerRadius = UDim.new(0, 16)
-sidebarCorner.Parent = sidebar
+local r=Instance.new"Frame"
+r.Size=UDim2.new(0,200,1,0)
+r.Position=UDim2.new(0,0,0,0)
+r.BackgroundColor3=Color3.fromRGB(230,230,230)
+r.BorderSizePixel=0
+r.Parent=n
 
-local sidebarItems = {
-    {category = "Category 1", subcategories = {"Sub Category 1", "Sub Category 2"}},
-    {category = "Category 2", subcategories = {"Sub Category 1", "Sub Category 2"}},
-    {category = "Category 3", subcategories = {"Sub Category 1", "Sub Category 2"}},
-    {category = "Category 4", subcategories = {"Sub Category 1", "Sub Category 2"}},
-    {category = "Category 5", subcategories = {"Sub Category 1", "Sub Category 2"}}
+local s=Instance.new"UICorner"
+s.CornerRadius=UDim.new(0,16)
+s.Parent=r
+
+local t={
+{category="Category 1",subcategories={"Sub Category 1","Sub Category 2"}},
+{category="Category 2",subcategories={"Sub Category 1","Sub Category 2"}},
+{category="Category 3",subcategories={"Sub Category 1","Sub Category 2"}},
+{category="Category 4",subcategories={"Sub Category 1","Sub Category 2"}},
+{category="Category 5",subcategories={"Sub Category 1","Sub Category 2"}}
 }
 
-local yOffset = 10
+local u=10
 
-for _, item in ipairs(sidebarItems) do
-    local categoryLabel = Instance.new("TextLabel")
-    categoryLabel.Size = UDim2.new(1, -20, 0, 30)
-    categoryLabel.Position = UDim2.new(0, 10, 0, yOffset)
-    categoryLabel.Text = item.category
-    categoryLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
-    categoryLabel.BackgroundTransparency = 1
-    categoryLabel.TextScaled = true
-    categoryLabel.Font = Enum.Font.SourceSans
-    categoryLabel.TextSize = 14
-    categoryLabel.TextYAlignment = Enum.TextYAlignment.Center
-    categoryLabel.Parent = sidebar
+for v,w in ipairs(t)do
+local x=Instance.new"TextLabel"
+x.Size=UDim2.new(1,-20,0,30)
+x.Position=UDim2.new(0,10,0,u)
+x.Text=w.category
+x.TextColor3=Color3.fromRGB(0,0,0)
+x.BackgroundTransparency=1
+x.TextScaled=true
+x.Font=Enum.Font.SourceSans
+x.TextSize=14
+x.TextYAlignment=Enum.TextYAlignment.Center
+x.Parent=r
 
-    yOffset = yOffset + 40
+u=u+40
 
-    for _, subcategory in ipairs(item.subcategories) do
-        local subCategoryButton = Instance.new("TextButton")
-        subCategoryButton.Size = UDim2.new(1, -40, 0, 30)
-        subCategoryButton.Position = UDim2.new(0, 20, 0, yOffset)
-        subCategoryButton.Text = subcategory
-        subCategoryButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-        subCategoryButton.BackgroundColor3 = Color3.fromRGB(210, 210, 210)
-        subCategoryButton.TextScaled = true
-        subCategoryButton.Font = Enum.Font.SourceSans
-        subCategoryButton.TextSize = 12
-        subCategoryButton.TextYAlignment = Enum.TextYAlignment.Center
-        subCategoryButton.Parent = sidebar
+for y,z in ipairs(w.subcategories)do
+local A=Instance.new"TextButton"
+A.Size=UDim2.new(1,-40,0,30)
+A.Position=UDim2.new(0,20,0,u)
+A.Text=z
+A.TextColor3=Color3.fromRGB(0,0,0)
+A.BackgroundColor3=Color3.fromRGB(210,210,210)
+A.TextScaled=true
+A.Font=Enum.Font.SourceSans
+A.TextSize=12
+A.TextYAlignment=Enum.TextYAlignment.Center
+A.Parent=r
 
-        local subCategoryCorner = Instance.new("UICorner")
-        subCategoryCorner.CornerRadius = UDim.new(0, 8)
-        subCategoryCorner.Parent = subCategoryButton
+local B=Instance.new"UICorner"
+B.CornerRadius=UDim.new(0,8)
+B.Parent=A
 
-        subCategoryButton.MouseButton1Click:Connect(function()
-            -- Handle subcategory button click
-        end)
+A.MouseButton1Click:Connect(function()
 
-        yOffset = yOffset + 40
-    end
+end)
+
+u=u+40
+end
 end
